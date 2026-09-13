@@ -11,17 +11,17 @@
 
 ### Team Members
 - Team Lead: SIDDHARTH K P - SOE, CUSAT
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 2:  BHARAT VINOD  - SOE, CUSAT
 
 ### Project Description
-[2-3 lines about what your project does]
+Kozhikkuttan is a flirt who will high-five women with enthusiasm while flipping off men.
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+We don't have machines with enough personality.
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+Kozhikkuttan will high-five women by utlizing the computer vision back-end to detect their gender. If it is a guy, the reply would be middle-finger. He'll ignore
+if somebody is not close enough.
 
 ## Technical Details
 ### Technologies/Components Used
@@ -48,8 +48,9 @@ myenv/bin/python gender.py
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+<img width="1920" height="1080" alt="gender_detection" src="https://github.com/user-attachments/assets/fe21b1c4-89a7-4cdf-bd28-666a0f654065" />
+
+Screenshot of the viewfinder with bounding boxes around our faces. Gender info overlay is also visible.
 
 ![Screenshot2](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
