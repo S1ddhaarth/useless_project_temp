@@ -135,7 +135,7 @@ The first image is what a woman would see when she approaches the machine and th
 
 ### Project Demo
 # Video
-https://www.youtube.com/watch?v=AlcOLfIIw9A
+https://www.youtube.com/watch?v=VKf7wQXTU_I
 
 
 ## Team Contributions
