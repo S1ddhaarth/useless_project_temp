@@ -1,1 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kozhikkuttan 🎯 — The Robot with Personality</title>
+  <meta name="description"
+    content="Kozhikkuttan is a cheeky robot that high-fives women and flips off men, powered by computer vision and an ESP32." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & base ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0e0e10;
+      color: #e4e4e7;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fade-in 0.6s ease-out;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f97316, #facc15);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      color: #a1a1aa;
+    }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 2.5rem;
+      animation: fade-in 0.6s ease-out both;
+    }
+
+    section:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    section:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    section:nth-child(4) {
+      animation-delay: 0.45s;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f4f4f5;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    p,
+    li {
+      color: #a1a1aa;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li::before {
+      content: '›';
+      color: #f97316;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    ul li+li {
+      margin-top: 0.35rem;
+    }
+
+    /* ── Video embed ── */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #27272a;
+      background: #18181b;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Placeholder shown when no video URL is set */
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: #52525b;
+      font-size: 0.9rem;
+    }
+
+    .video-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.4;
+    }
+
+    /* ── Badges ── */
+    .badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .badges img {
+      height: 22px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #27272a;
+      color: #52525b;
+      font-size: 0.85rem;
+      animation: fade-in 0.6s ease-out 0.6s both;
+    }
+
+    footer a {
+      color: #f97316;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Keyframes ── */
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <h1>Kozhikkuttan 🐣</h1>
+      <p class="tagline">A robot with too much personality — high-fives women, flips off men.</p>
+    </header>
+
+    <!-- About -->
+    <section>
+      <h2>🤖 What is this?</h2>
+      <p>
+        Kozhikkuttan uses real-time gender detection (DeepFace + OpenCV) to decide
+        whether to greet you with a high-five or a middle finger, powered by an
+        ESP32 and a servo motor. Because machines deserve opinions too.
+      </p>
+    </section>
+
+    <!-- Tech stack -->
+    <section>
+      <h2>🛠️ Built with</h2>
+      <ul>
+        <li>Python &amp; OpenCV — computer vision pipeline</li>
+        <li>DeepFace — gender classification</li>
+        <li>ESP32 + Servo SG90 — the physical sass</li>
+        <li>Arduino IDE &amp; C++ — firmware</li>
+      </ul>
+    </section>
+
+    <!-- Demo video -->
+    <section>
+      <h2>🎬 Demo</h2>
+      <div class="video-wrapper">
+        <!--
+          ╔══════════════════════════════════════════════════════════════╗
+          ║  YOUTUBE VIDEO PLACEHOLDER                                  ║
+          ║                                                             ║
+          ║  Replace YOUR_VIDEO_ID below with your YouTube video ID.    ║
+          ║  Then delete the <div class="video-placeholder"> block.     ║
+          ║                                                             ║
+          ║  Example: if your URL is                                    ║
+          ║    https://www.youtube.com/watch?v=dQw4w9WgXcQ              ║
+          ║  then YOUR_VIDEO_ID = dQw4w9WgXcQ                          ║
+          ╚══════════════════════════════════════════════════════════════╝
+        -->
+
+        <!-- Uncomment the line below and replace YOUR_VIDEO_ID -->
+        <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Kozhikkuttan Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+        <!-- Remove this placeholder once you add the iframe above -->
+        <div class="video-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9A2.25 2.25 0 0 0 13.5 5.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+          </svg>
+          <span>Demo video coming soon</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section>
+      <h2>👥 Team Informa</h2>
+      <ul>
+        <li>Siddharth K P — Team Lead, SOE CUSAT</li>
+        <li>Bharat Vinod — SOE CUSAT</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div class="badges">
+        <img src="https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F"
+          alt="TinkerHub" />
+        <img
+          src="https://img.shields.io/badge/UselessProjects--26-26?link=https%3A%2F%2Ftinkerhub.org%2Fevents%2F1M8ORET9A1%2Fuseless-projects-3.0"
+          alt="Useless Projects" />
+      </div>
+      <p style="margin-top: 0.75rem;">
+        Made with ❤️ at <a href="https://www.tinkerhub.org/" target="_blank" rel="noopener">TinkerHub Useless
+          Projects</a>
+      </p>
+    </footer>
+
+  </div>
+</body>
+
+</html>
