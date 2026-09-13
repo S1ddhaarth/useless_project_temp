@@ -68,7 +68,7 @@ while True:
         results = DeepFace.analyze(
             img_path=frame,
             actions=['gender'],
-            detector_backend='opencv',
+            detector_backend='ssd',
             enforce_detection=True
         )
 
