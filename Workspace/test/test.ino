@@ -18,6 +18,7 @@ char currentState = '2';        // '1' = Man, '0' = Woman, '2' = No one/Timeout
 
 // Rotation management
 bool rotating = false;          // True while a 180° rotation is in progress
+char lastTriggeredGender = ' '; // Tracks which gender last triggered a rotation
 
 void setup() {
   Serial.begin(115200);
@@ -36,9 +37,11 @@ void loop() {
       currentState = incomingByte;
       lastCommandTime = millis();
 
-      // Start a new rotation if one isn't already in progress
-      if (!rotating) {
+      // Start a new rotation only if the detected gender is different
+      // from the one that last triggered a rotation
+      if (!rotating && incomingByte != lastTriggeredGender) {
         rotating = true;
+        lastTriggeredGender = incomingByte;
       }
     }
   }
@@ -62,38 +65,15 @@ void loop() {
       if (currentAngle >= maxAngle) {
         currentAngle = maxAngle;
         sweepDirection = -1;  // Next rotation goes the other way
-        rotating = false;     // This rotation is complete
-
-        // If a face is still detected, immediately start the return rotation
-        if (currentState == '1' || currentState == '0') {
-          rotating = true;
-        }
+        rotating = false;     // Stop — wait for opposite gender
       } else if (currentAngle <= minAngle) {
         currentAngle = minAngle;
         sweepDirection = 1;   // Next rotation goes the other way
-        rotating = false;     // This rotation is complete
-
-        // If a face is still detected, immediately start the return rotation
-        if (currentState == '1' || currentState == '0') {
-          rotating = true;
-        }
+        rotating = false;     // Stop — wait for opposite gender
       }
 
       myServo.write(currentAngle);
     }
   }
-  else if (currentState == '2') {
-    // No rotation in progress and no one detected: return to center
-    if (currentAngle != 90) {
-      if (currentMillis - lastSweepTime >= sweepInterval) {
-        lastSweepTime = currentMillis;
-        if (currentAngle < 90) {
-          currentAngle++;
-        } else {
-          currentAngle--;
-        }
-        myServo.write(currentAngle);
-      }
-    }
-  }
+  // When not rotating, servo stays at its current position
 }
