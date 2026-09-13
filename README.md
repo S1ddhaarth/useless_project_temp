@@ -27,14 +27,14 @@
 ### Technologies/Components Used
 For Software:
 - C++, Python
-- [Frameworks used]
+- Arduino_ESP32 (Expressif package via Github)
 - ESP32_Servo
 - Arduino IDE
 
 For Hardware:
-- ESP32 DevKit V1, Servo SG90
-- [List specifications]
-- [List tools required]
+- ESP32 DevKit V1, Servo SG90, Webcam
+- Dual Core, Servo typical voltage is 5V, Webcam (Built-in one)
+- Jumper wires, servo horns
 
 ### Implementation
 For Software:
@@ -42,8 +42,8 @@ For Software:
 pip install -r requirements.txt (Make sure to do this inside a virtual env.)
 
 # Run
-[commands]
-
+myenv/bin/python gender.py
+(Assuming your virtual environment is named myenv)
 ### Project Documentation
 For Software:
 
