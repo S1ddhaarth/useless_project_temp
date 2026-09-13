@@ -44,32 +44,56 @@ pip install -r requirements.txt (Make sure to do this inside a virtual env.)
 # Run
 myenv/bin/python gender.py
 (Assuming your virtual environment is named myenv)
-### Project Documentation
-For Software:
 
 # Screenshots (Add at least 3)
 <img width="1920" height="1080" alt="gender_detection" src="https://github.com/user-attachments/assets/fe21b1c4-89a7-4cdf-bd28-666a0f654065" />
 
 Screenshot of the viewfinder with bounding boxes around our faces. Gender info overlay is also visible.
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
-
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+<b> We do not have any more screenshots as this is a hardware project. </b>
 
 For Hardware:
 
 # Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
 
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
+ESP32 Microcontroller
+           +-----------------------+
+           |                       |
+   USB >---| USB                   |
+           |                       |
+           |                   VIN |---------------------------+ (5V / VCC)
+           |                       |                           |
+           |                   GND |-------------------+       |
+           |                       |                   |       |
+           |                GPIO18 |-----------+       |       |
+           |                       |           |       |       |
+           +-----------------------+           |       |       |
+                                               |       |       |
+                                               v       v       v
+                                            +---------------------+
+                                            | SIG     GND     VCC |
+                                            |                     |
+                                            |    Servo Motor      |
+                                            +---------------------+
+
+Schematic Diagram - Electrical schematic detailing the pin-to-pin connections between the ESP32 development board and the servo, illustrating the power (VIN/GND) and data (GPIO 18 to SIG) pathways.
+
+
+  USB Cable
+[ Laptop (Camera) ] ======================[ ESP32 USB Port ]
+                                                  |
+                                              [ ESP32 ]
+                                              /   |   \
+                                          VIN/5V GND GPIO18
+                                            |     |     |
+                           (Red Wire) ----->|     |     |<----- (Orange/Yellow Wire)
+                                            |     |     |
+                                           VCC   GND   SIG
+                                            |     |     |
+                                         [ Servo Motor ]
+
+Circuit Diagram - The physical wiring layout showing the laptop providing data and power to the ESP32 via USB. The servo motor receives its 5V power from the ESP32's VIN pin, shares a common ground, and receives control signals from GPIO 18.
+
 
 # Build Photos
 <table>
@@ -109,8 +133,6 @@ The first image is what a woman would see when she approaches the machine and th
 # Video
 https://www.youtube.com/watch?v=AlcOLfIIw9A
 
-# Additional Demos
-[Add any extra demo materials/links]
 
 ## Team Contributions
 - BHARATH   : Setup the computer vision backend
