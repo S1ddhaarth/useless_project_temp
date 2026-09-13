@@ -2,15 +2,15 @@
 
 
 
-# [Project Name] 🎯
+# Kozhikkuttan 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: Informa
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
+- Team Lead: SIDDHARTH K P - SOE, CUSAT
 - Member 2: [Name] - [College]
 - Member 3: [Name] - [College]
 
@@ -26,13 +26,13 @@
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
+- C++, Python
 - [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- ESP32_Servo
+- Arduino IDE
 
 For Hardware:
-- [List main components]
+- ESP32 DevKit V1, Servo SG90
 - [List specifications]
 - [List tools required]
 
@@ -98,6 +98,3 @@ Made with ❤️ at TinkerHub Useless Projects
 
 ![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
 ![Static Badge](https://img.shields.io/badge/UselessProjects--26-26?link=https%3A%2F%2Ftinkerhub.org%2Fevents%2F1M8ORET9A1%2Fuseless-projects-3.0)
-
-
-
