@@ -57,7 +57,7 @@ For Hardware:
 # Schematic & Circuit
 
 ```
-ESP32 Microcontroller
+             ESP32 Microcontroller
            +-----------------------+
            |                       |
    USB >---| USB                   |
@@ -82,7 +82,7 @@ Schematic Diagram - Electrical schematic detailing the pin-to-pin connections be
 
 
 ```
-  USB Cable
+                          USB Cable
 [ Laptop (Camera) ] ======================[ ESP32 USB Port ]
                                                   |
                                               [ ESP32 ]

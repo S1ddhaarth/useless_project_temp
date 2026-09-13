@@ -91,9 +91,9 @@ while True:
                 # Send serial signal based on confidence thresholds
                 if ser and ser.is_open:
                     if man_conf > 50.0:
-                        ser.write(b'1')
-                    elif woman_conf > 50.0:
                         ser.write(b'0')
+                    elif woman_conf > 50.0:
+                        ser.write(b'1')
 
                 dominant = face.get('dominant_gender', 'Unknown')
                 confidence = gender_data.get(dominant, 0)
