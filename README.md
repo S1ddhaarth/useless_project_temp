@@ -72,27 +72,49 @@ For Hardware:
 *Add caption explaining the schematic*
 
 # Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
+<table>
+  <tr>
+    <td>
+      <img width="700" height="700" alt="image" src="https://github.com/user-attachments/assets/d03e7aec-4f5a-4799-a7c1-8f4932887306" />
+    </td>
+    <td>
+      <img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/5cdbb744-7e61-4c07-99ea-6441a7d3fd98" />
+    </td>
+  </tr>
+</table>
+<b>Components</b>
+- SG90 Servo motor
+- ESP32
 
-![Build](Add photos of build process here)
-*Explain the build steps*
+- We didn't take pictures while the build was ongoing. Sorry :)
+- Build steps :
+  - Created the gender detection python script.
+  - Wired up the Arduino board and the servo motor.
+  - Made it throw the returned value over serial connection.
+  - Created an Arduino sketch and tested out the servo's functionality.
+  - Modified the sketch to pull the values returned by the python script over the serial port and rotate accordingly.
 
-![Final](Add photo of final product here)
-*Explain the final build*
+<table>
+  <tr>
+    <td><img width="3472" height="4624" alt="Abhi_onFire_13092026_172243" src="https://github.com/user-attachments/assets/222e5b81-a7e5-4b99-b59d-e6fa18f2c765" />
+    </td>
+    <td>
+      <img width="3472" height="4624" alt="Abhi_onFire_13092026_172229" src="https://github.com/user-attachments/assets/a669e74e-6d8c-4775-ac03-81f47f827dd6" />
+    </td>
+  </tr>
+</table>
+The first image is what a woman would see when she approaches the machine and the second one is what a man would see when he approaches the machine as the thing will rotate.
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+https://www.youtube.com/watch?v=AlcOLfIIw9A
 
 # Additional Demos
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- BHARATH   : Setup the computer vision backend
+- SIDDHARTH : Hardware setup and sketch program
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
