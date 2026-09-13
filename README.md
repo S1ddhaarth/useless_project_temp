@@ -56,6 +56,7 @@ For Hardware:
 
 # Schematic & Circuit
 
+```
 ESP32 Microcontroller
            +-----------------------+
            |                       |
@@ -75,10 +76,12 @@ ESP32 Microcontroller
                                             |                     |
                                             |    Servo Motor      |
                                             +---------------------+
+```
 
 Schematic Diagram - Electrical schematic detailing the pin-to-pin connections between the ESP32 development board and the servo, illustrating the power (VIN/GND) and data (GPIO 18 to SIG) pathways.
 
 
+```
   USB Cable
 [ Laptop (Camera) ] ======================[ ESP32 USB Port ]
                                                   |
@@ -91,6 +94,7 @@ Schematic Diagram - Electrical schematic detailing the pin-to-pin connections be
                                            VCC   GND   SIG
                                             |     |     |
                                          [ Servo Motor ]
+```
 
 Circuit Diagram - The physical wiring layout showing the laptop providing data and power to the ESP32 via USB. The servo motor receives its 5V power from the ESP32's VIN pin, shares a common ground, and receives control signals from GPIO 18.
 
