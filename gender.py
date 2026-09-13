@@ -34,6 +34,9 @@ from deepface import DeepFace
 SERIAL_PORT = "/dev/ttyUSB0"  # Change to /dev/ttyUSB0 or /dev/ttyACM0 if using standard USB-to-UART
 BAUD_RATE = 115200
 
+# Minimum face size in pixels to trigger gender evaluation and serial commands
+MIN_FACE_SIZE = 200 
+
 try:
     ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
 except Exception as e:
@@ -79,7 +82,8 @@ while True:
             region = face.get('region', {})
             x, y, w, h = region.get('x', 0), region.get('y', 0), region.get('w', 0), region.get('h', 0)
 
-            if w > 0 and h > 0:
+            # Filter out background faces by requiring a minimum bounding box size
+            if w > MIN_FACE_SIZE and h > MIN_FACE_SIZE:
                 gender_data = face.get('gender', {})
                 man_conf = gender_data.get('Man', 0.0)
                 woman_conf = gender_data.get('Woman', 0.0)
@@ -95,6 +99,7 @@ while True:
                 confidence = gender_data.get(dominant, 0)
                 label = f"{dominant}: {confidence:.1f}%"
 
+                # Draw bounding box and label only for subjects that meet the size criteria
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
                 (text_w, text_h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
@@ -103,7 +108,8 @@ while True:
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
 
     except Exception as e:
-        print(f"[ERROR] DeepFace analysis failed: {type(e).__name__}: {e}")
+        # Silencing standard detection errors (like no face found) to prevent console spam
+        pass
 
     cv2.imshow("Gender Identification - Live Overlay", frame)
 
