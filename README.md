@@ -39,7 +39,7 @@ For Hardware:
 ### Implementation
 For Software:
 # Installation
-[commands]
+pip install -r requirements.txt (Make sure to do this inside a virtual env.)
 
 # Run
 [commands]
