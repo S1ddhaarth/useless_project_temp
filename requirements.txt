@@ -1,0 +1,6 @@
+deepface
+opencv-contrib-python==4.9.0.80
+tensorflow[and-cuda]
+tf-keras
+numpy<2
+pyserial
