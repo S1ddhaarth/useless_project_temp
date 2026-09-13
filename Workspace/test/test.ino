@@ -3,18 +3,21 @@
 const int servoPin = 13; 
 Servo myServo;
 
-// Movement variables for sweeping
+// Movement variables for sweeping (full 180° rotation: 0 <-> 180)
 int currentAngle = 90;
 int sweepDirection = 1;         // 1 for increasing angle, -1 for decreasing
 unsigned long lastSweepTime = 0;
 const int sweepInterval = 10;   // Speed of the sweep in milliseconds (lower = faster)
-const int maxAngle = 135;       // Right limit of the sweep
-const int minAngle = 45;        // Left limit of the sweep
+const int maxAngle = 180;       // End of a full rotation
+const int minAngle = 0;         // Start of a full rotation
 
 // State and timeout management
 unsigned long lastCommandTime = 0;
 const unsigned long timeoutMillis = 500; // Time (ms) to wait before assuming out of frame
 char currentState = '2';        // '1' = Man, '0' = Woman, '2' = No one/Timeout
+
+// Rotation management
+bool rotating = false;          // True while a 180° rotation is in progress
 
 void setup() {
   Serial.begin(115200);
@@ -31,42 +34,66 @@ void loop() {
     // Update state and reset the timer if a valid command is received
     if (incomingByte == '1' || incomingByte == '0') {
       currentState = incomingByte;
-      lastCommandTime = millis(); 
+      lastCommandTime = millis();
+
+      // Start a new rotation if one isn't already in progress
+      if (!rotating) {
+        rotating = true;
+      }
     }
   }
 
   // 2. Check if the face went out of frame (Timeout)
+  //    Only update state — do NOT stop a rotation in progress
   if (millis() - lastCommandTime > timeoutMillis) {
     currentState = '2'; // Reset to neutral state
   }
 
   // 3. Execute servo movement based on the current state
   unsigned long currentMillis = millis();
-  
-  if (currentState == '1') {
-    // Man detected: Sweep back and forth continuously
+
+  if (rotating) {
+    // A rotation is in progress — always complete it regardless of currentState
     if (currentMillis - lastSweepTime >= sweepInterval) {
       lastSweepTime = currentMillis;
       currentAngle += sweepDirection;
-      
-      // Reverse direction at the limits
+
+      // Clamp and mark rotation complete when an endpoint is reached
       if (currentAngle >= maxAngle) {
-        sweepDirection = -1;
+        currentAngle = maxAngle;
+        sweepDirection = -1;  // Next rotation goes the other way
+        rotating = false;     // This rotation is complete
+
+        // If a face is still detected, immediately start the return rotation
+        if (currentState == '1' || currentState == '0') {
+          rotating = true;
+        }
       } else if (currentAngle <= minAngle) {
-        sweepDirection = 1;
+        currentAngle = minAngle;
+        sweepDirection = 1;   // Next rotation goes the other way
+        rotating = false;     // This rotation is complete
+
+        // If a face is still detected, immediately start the return rotation
+        if (currentState == '1' || currentState == '0') {
+          rotating = true;
+        }
       }
-      
+
       myServo.write(currentAngle);
     }
-  } 
-  else if (currentState == '0') {
-    // Woman detected: Move to a fixed position (0 degrees)
-    currentAngle = 0;
-    myServo.write(currentAngle);
-  } 
+  }
   else if (currentState == '2') {
-    // No one detected (Timeout): Return to center and stop
-    currentAngle = 90;
-    myServo.write(currentAngle);
+    // No rotation in progress and no one detected: return to center
+    if (currentAngle != 90) {
+      if (currentMillis - lastSweepTime >= sweepInterval) {
+        lastSweepTime = currentMillis;
+        if (currentAngle < 90) {
+          currentAngle++;
+        } else {
+          currentAngle--;
+        }
+        myServo.write(currentAngle);
+      }
+    }
   }
 }
